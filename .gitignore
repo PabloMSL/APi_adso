@@ -1,0 +1,13 @@
+# Entorno Virtual
+venv/
+
+# Secretos y Credenciales
+backend/.env
+backend/serviceAccountKey.json
+
+# Python
+__pycache__/
+*.py[cod]
+
+# DB local (si se usa)
+db.sqlite3

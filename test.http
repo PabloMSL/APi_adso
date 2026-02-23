@@ -1,0 +1,27 @@
+### Obtener todas las tareas
+GET http://127.0.0.1:8000/api/tareas/
+
+### Crear una nueva tarea (POST)
+POST http://127.0.0.1:8000/api/tareas/
+Content-Type: application/json
+
+{
+    "titulo": "Mi primera tarea API",
+    "descripcion": "Probando el desacoplamiento",
+    "estado": "Pendiente"
+}
+
+### Poner
+PUT http://127.0.0.1:8000/api/tareas/J41h5AsHlAeZ43H9EqJ1/
+Content-Type: application/json
+
+{
+    "titulo": "Mi primer put",
+    "descripcion": "Probando el put",
+    "estado": "activado"
+}
+
+### Borrar
+
+DELETE http://127.0.0.1:8000/api/tareas/u7mdQVTND3gfCgOFqewa/
+
