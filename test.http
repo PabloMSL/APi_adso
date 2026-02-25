@@ -25,3 +25,34 @@ Content-Type: application/json
 
 DELETE http://127.0.0.1:8000/api/tareas/u7mdQVTND3gfCgOFqewa/
 
+### Iniciar sesion para obtener el token
+POST http://127.0.0.1:8000/api/auth/registro/
+Content-Type: application/json
+
+{
+    "email" : "aprendiz@gmail.com",
+    "password" : "123456"
+}
+
+### Post de iniciar sesion
+
+
+POST http://127.0.0.1:8000/api/auth/login/
+Content-Type: application/json
+
+{
+    "email" : "aprendiz@gmail.com",
+    "password" : "123456"
+}
+
+### 3. Crear una tarea usando el token (POST)
+
+POST http://127.0.0.1:8000/api/tareas/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjJjMjdhZmY1YzlkNGU1MzVkNWRjMmMwNWM1YTE2N2FlMmY1NjgxYzIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXBpLWFkc28iLCJhdWQiOiJhcGktYWRzbyIsImF1dGhfdGltZSI6MTc3MjAzNjU1MSwidXNlcl9pZCI6IlhTQjFlYlV3UmpUTkR2SnRRemMydlpqUUFlODMiLCJzdWIiOiJYU0IxZWJVd1JqVE5Edkp0UXpjMnZaalFBZTgzIiwiaWF0IjoxNzcyMDM2NTUxLCJleHAiOjE3NzIwNDAxNTEsImVtYWlsIjoiYXByZW5kaXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFwcmVuZGl6QGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.PhUwv4P-BDQKKB4KxSz9Rq7BIDAPmPRBZCgY9wFfOcPVjhkT2Mj2Ds93aNu_4HPIyCMYBmR97nTlA-_NfnRi0LMS2Gw5XFqYipHSOG1zpkBmmK02_AvFR2QyYUCYja0FUA5PAD8FB-owqSLoh5vvv_l5S0VKafz89sTStmVdpPjN1FVlPBOOTxoh3_o5EBDBavvhc1mrcwUzQM3yj2rlUp-i8uIfHjTcfiIbxXrO4b9wRtewJwW7pGGWH8ZSmxDtOWqtTKvy6JqRaQFdarKvsvI-3bKpxiqfYf53wbLfYzU6F9J8bjTMNYez3-fqWika4Qxt3Cxw8SjuLZMSipyIhA
+
+{
+    "titulo": "Tarea con API segura",
+    "descripcion": "Mi primera tarea usando JWT de Firebase",
+    "estado": "activado"
+}
