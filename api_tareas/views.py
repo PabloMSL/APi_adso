@@ -21,16 +21,22 @@ class TareasApiView(APIView):
         # GET ahora solo trae las tareas del usuario del dueño del token
 
         uid_usuario = request.user.uid
+        rol_usuario = request.user.rol # Trae el rol
+        
         try:
-            #Traer todos los datos de la seleccion de firestore
-            docs = db.collection('api_tareas').where('usuario_id', "==", uid_usuario).stream()
+            # Logica de los roles
+            if rol_usuario == 'instructor':
+                # El instructor va a poder ver todas ls tareas
+                docs = db.collection('api_tareas').stream()
+            else:
+                # El aprendiz solo podra ver sus tareas
+                docs = db.collection('api_tareas').where('usuario_id', '==', uid_usuario).stream()
             tareas = []
             for doc in docs:
-                tarea_data = doc.to_dict()
-                tarea_data['id'] = doc.id
-                tareas.append(tarea_data)
-            
-            return Response({"mensaje": "Exito", "Datos": tareas}, status=status.HTTP_200_OK)
+                data = doc.to_dict()
+                data['id'] = doc.id
+                tareas.append(data)
+            return Response({"Mensaje": f"Listando como rol {rol_usuario}", "datos": tareas}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"Error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         

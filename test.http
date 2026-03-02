@@ -1,6 +1,6 @@
 ### Obtener todas las tareas
 GET http://127.0.0.1:8000/api/tareas/
-
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXBpLWFkc28iLCJhdWQiOiJhcGktYWRzbyIsImF1dGhfdGltZSI6MTc3MjQ1Nzg5MywidXNlcl9pZCI6IkllTk00NUVpZ2tXUGg0QTg1RE93eUJtS29sNDIiLCJzdWIiOiJJZU5NNDVFaWdrV1BoNEE4NURPd3lCbUtvbDQyIiwiaWF0IjoxNzcyNDU3ODkzLCJleHAiOjE3NzI0NjE0OTMsImVtYWlsIjoiYXByZW5kaXozQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJhcHJlbmRpejNAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.jBr6P1fSp04GZUF18qhnnbZWlnqwT55RQ2qjacKa-bqO_cQbOD_DdGmUwMJYGNZoM5k0itSQQSIxKJOMvpyO1kwoVS6Ci7NrCd1aHV3ckFrx1UHHHV9eWh6KWL6H5K1fTB-yYr91mANYdVpQF0RP3B4pMj0MUykVKeAINqiKj54Mys6qQDHvN_SUJ0fDVD2K7DES2BsGL24aBQrc8Xa_7a5QFHUz-NVzshssYdgagPUzXkcseohzRRcv6DMVHUIwdpdSXKed3KNQpqlkkP3TQYI93pg6-33Xtwc0QIakN59vhtHOxRqcRNnQoq04XDKOfnIcLHptars-1sENr0tJxw
 ### Crear una nueva tarea (POST)
 POST http://127.0.0.1:8000/api/tareas/
 Content-Type: application/json
@@ -30,7 +30,8 @@ POST http://127.0.0.1:8000/api/auth/registro/
 Content-Type: application/json
 
 {
-    "email" : "aprendiz@gmail.com",
+    "email" : "aprendiz3@gmail.com",
+    "rol": "instructor",
     "password" : "123456"
 }
 
@@ -41,7 +42,7 @@ POST http://127.0.0.1:8000/api/auth/login/
 Content-Type: application/json
 
 {
-    "email" : "aprendiz@gmail.com",
+    "email" : "aprendiz3@gmail.com",
     "password" : "123456"
 }
 
@@ -56,3 +57,15 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjJjMjdhZmY1YzlkNGU1MzVkNWRjMm
     "descripcion": "Mi primera tarea usando JWT de Firebase",
     "estado": "activado"
 }
+
+### 4 subir imagen a firestore
+POST http://127.0.0.1:8000/api/perfil/foto/
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjJhYWM0MWY3NTA4OGZlOGUwOWEwN2Q0NDRjZmQ2YjhjZTQ4MTJhMzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXBpLWFkc28iLCJhdWQiOiJhcGktYWRzbyIsImF1dGhfdGltZSI6MTc3MjQ2OTIxMCwidXNlcl9pZCI6IkllTk00NUVpZ2tXUGg0QTg1RE93eUJtS29sNDIiLCJzdWIiOiJJZU5NNDVFaWdrV1BoNEE4NURPd3lCbUtvbDQyIiwiaWF0IjoxNzcyNDY5MjEwLCJleHAiOjE3NzI0NzI4MTAsImVtYWlsIjoiYXByZW5kaXozQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJhcHJlbmRpejNAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.X5FJSLkHx5qLMhMIVUoChyATVSgbH-VZ_veiHdWX8jc-cMfyyEnJWTUQbU6dxUC451awbgj9Ezdt5nXeWyhlKq6oPnromzjgymcYOfuTJCJ-c7mlqdo4qSlSejZTWP4QVDg4hL6iZqE0c9vzRvFKo6HGHUdZFIxk0Y5N9bzgpeqBJkHx1aQkZtl5h6XOTyVaD0j3xyn26-OOjNMKu7SIQOoWxaw7yoN0RuPbGuyoVQjCqeZ8EE-wbwEVQsljERQSbgJcUNTwPRP0WusmT-Ie_DTRgNB7UBhkL5GIo6LQyeKTu715E41zJMENdcqGPk0bbUZ3_3iyxUb9DNKjYLEB-w
+Content-Type: multipart/form-data; boundary=MiBoundary
+
+--MiBoundary
+Content-Disposition: form-data; name="imagen"; filename="avatar.jpeg"
+Content-Type: image/jpeg
+
+< C:\Users\SENA\Desktop\christian2\donkey.jpeg
+--MiBoundary--

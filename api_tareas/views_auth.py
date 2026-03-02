@@ -20,6 +20,7 @@ class RegistroAPIView(APIView):
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
+        rol = request.data.get('rol')
 
         if not email or not password:
             return Response({"error": "Faltan credenciales"}, status=status.HTTP_400_BAD_REQUEST)
@@ -30,7 +31,7 @@ class RegistroAPIView(APIView):
             user = auth.create_user(email=email, password=password)
             db.collection('perfiles').document(user.uid).set({
                 'email': email,
-                'rol': 'aprendiz',
+                'rol': rol,
                 'fecha_registro': firestore.SERVER_TIMESTAMP
             })
 
