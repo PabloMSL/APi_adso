@@ -19,6 +19,11 @@ class TareasApiView(APIView):
     """
     def get(self, request, tarea_id=None):
         # GET ahora solo trae las tareas del usuario del dueño del token
+        
+        
+        limit  = int(request.query_params.get('limit', 10))
+        last_doc_id = request.query_params.get('last_doc_id')
+        
 
         uid_usuario = request.user.uid
         rol_usuario = request.user.rol # Trae el rol
@@ -27,10 +32,18 @@ class TareasApiView(APIView):
             # Logica de los roles
             if rol_usuario == 'instructor':
                 # El instructor va a poder ver todas ls tareas
-                docs = db.collection('api_tareas').stream()
+                query = db.collection('api_tareas').order_by('fecha_creacion')
             else:
                 # El aprendiz solo podra ver sus tareas
-                docs = db.collection('api_tareas').where('usuario_id', '==', uid_usuario).stream()
+                query= db.collection('api_tareas').where('usuario_id', '==', uid_usuario).order_by('fecha_creacion')
+            if last_doc_id:
+                # Obtenga el ultimo documento
+                last_doc = db.collection('api_tareas').document(last_doc_id).get()
+                if last_doc.exists:
+                    query = query.start_after(last_doc)
+            
+            # Aplicar el limite
+            docs = query.limit(limit).stream()
             tareas = []
             for doc in docs:
                 data = doc.to_dict()
